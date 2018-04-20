@@ -8,18 +8,34 @@ import {
 import {Calendar} from 'react-native-calendars';
 import {GREEN, GREY1, WHITE, TABBAR_GREY, BACKGROUND_GREY} from '../styles';
 
-export default class CalendarsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.onDayPress = this.onDayPress.bind(this);
+export default class BookingCalendar extends Component {
+  constructor({ initialDate }) {
+    super();
+    this.state = {
+      selected: initialDate,
+    };
+    
   }
+
+   onDayPress(day) {
+    this.setState({
+      selected: day.dateString
+    })
+    this.onDateChanged(day)
+  }
+
+  onDateChanged(day) {
+    var newDate = day.dateString;
+    this.props.callbackParent(newDate); // we notify our parent
+  }
+
+  
 
   render() {
     return (
       <View style={styles.container}>
         <Calendar
-          onDayPress={this.onDayPress}
+          onDayPress={this.onDayPress.bind(this)}
           style={styles.calendar}
           hideExtraDays
           markedDates={{[this.state.selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}}}
@@ -45,16 +61,10 @@ export default class CalendarsScreen extends Component {
             }
           }}
         />
-      
       </View>
     );
   }
 
-  onDayPress(day) {
-    this.setState({
-      selected: day.dateString
-    });
-  }
 }
 
 const styles = StyleSheet.create({

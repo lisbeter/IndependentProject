@@ -5,19 +5,20 @@ import {InfoButton} from '../../components/Buttons/InfoButton';
 import {BookingNavigator} from '../../config/router';
 import {Divider } from 'react-native-elements';
 import AccordionList from '../../components/AccordionList';
+import ProfileAgenda from '../../components/ProfileAgenda';
 
 
 
 export default class BookingStart extends React.Component {
     constructor(props){
-        super(props);
+        super(props); 
        
     }
   
     render() {
       return (
         <View style={ styles.mainContainer}> 
-        <AccordionList onChange={index = false}/>
+        <AccordionList />
         <Divider style={{ backgroundColor: GREEN }} />
          <View style={ styles.buttonContainer}>
          <Button

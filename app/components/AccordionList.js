@@ -17,25 +17,11 @@ import RoomPicker from '../components/RoomPicker';
         this.state = {
             activeSection: false,
             collapsed: true,
-            room: ''
-          };
+            room: '',
+            date: '',
+          };   
     }
-
-    SECTIONS = [
-        {
-          title: 'Välj datum',
-          content: <BookingCalendar/>,
-          icon: 'ion-ios-calendar-outline',
-          value: '',
-        },
-        {
-          title: 'Välj rum',
-          content: <RoomPicker onChange= {alert.bind('uppdaterad roompicker')}/>,
-          icon: 'ion-ios-home-outline',
-          value:'',
-        }
-      ];
-    
+  
       toggleExpanded = () => {
         this.setState({ collapsed: !this.state.collapsed });
       }
@@ -47,7 +33,7 @@ import RoomPicker from '../components/RoomPicker';
       renderHeader(section, i, isActive) {
         return (
           <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-            <Text style={styles.headerText}>{section.title}</Text>
+            <Text style={styles.headerText}>{section.title} </Text> 
           </Animatable.View>
         );
       }
@@ -59,20 +45,48 @@ import RoomPicker from '../components/RoomPicker';
           </Animatable.View>
         );
       }
+
+      onDateChanged(newDate) {
+        this.setState({date:newDate, activeSection:false})
+      }
+
+      onRoomChanged(newRoom) {
+        this.setState({room:newRoom, activeSection:false})
+      }
     
       render() {
+       var SECTIONS = [
+          {
+            title: 'Välj datum',
+            content: <BookingCalendar 
+            initialDate={this.state.date} 
+            callbackParent={(newDate) => this.onDateChanged(newDate)}
+            />,
+            icon: 'ion-ios-calendar-outline',
+          },
+          {
+            title: 'Välj rum',
+            content: <RoomPicker 
+            initialRoom={this.state.room} 
+            callbackParent={(newRoom) => this.onRoomChanged(newRoom)}/>,
+            icon: 'ion-ios-home-outline',
+          }
+        ];
+
         return (
           <View style={styles.container}>
-    
+          <View style = {styles.dataContainer}>
+            <Text style={styles.data}>Vald dag:  {this.state.date} {'\n'} 
+                Valt rum: {this.state.room} {'\n'} </Text> 
+          </View>
             <Accordion
               activeSection={this.state.activeSection}
-              sections={this.SECTIONS}
+              sections={SECTIONS}
               renderHeader={this.renderHeader}
               renderContent={this.renderContent}
               duration={400}
               onChange={this.setSection.bind(this)}
             />
-    
           </View>
         );
       }
@@ -115,4 +129,9 @@ import RoomPicker from '../components/RoomPicker';
       fontWeight: '500',
       padding: 10,
     },
+    data: {
+      color:WHITE,
+      fontSize: 16,
+      textAlign: 'center'
+    }
   });

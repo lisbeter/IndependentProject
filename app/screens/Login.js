@@ -15,12 +15,15 @@ constructor(){
     render() {
       return (
         <View style={styles.mainContainer}>
+        
          <Image source={require('../images/icon.png')} style={[styles.logo]} />
         <Text style={styles.welcome}>
           Välkommen till BookIT!{'\n'} 
         </Text>
         <LoginForm/> 
-        <LoginHelp/>
+        <View style= {styles.help}>
+        
+        </View>
       </View>
       );
     }
@@ -44,4 +47,10 @@ constructor(){
       margin: 10,
       color: '#FFFFFF',
     },
+    help:{
+      flex:1,
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      
+    }
   });

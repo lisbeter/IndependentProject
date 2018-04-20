@@ -21,10 +21,10 @@ const ScreenHeader = ({ label,rightComponent }) => {
 
 const styles = {
       outerContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
+        // position: 'absolute',
+        // top: 0,
+        // left: 0,
+        // right: 0,
         backgroundColor: '#5A6978',
         borderBottomColor: '#FFFFFF',
         borderBottomWidth: 1,

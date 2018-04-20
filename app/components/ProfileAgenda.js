@@ -33,11 +33,13 @@ export default class ProfileAgenda extends Component {
             monthTextColor: 'white',
             selectedDayBackgroundColor: GREEN,
             arrowColor: 'white',
-            calendarBackground: TABBAR_GREY,
+            calendarBackground: BACKGROUND_GREY,
             agendaDayTextColor: WHITE,
             agendaDayNumColor: GREEN,
             agendaTodayColor: GREEN,
             agendaKnobColor: GREEN,
+            dotColor: GREEN,
+
           }}
           // agenda container style
           style={{

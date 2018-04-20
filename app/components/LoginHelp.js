@@ -14,7 +14,7 @@ export default class LoginHelp extends Component{
     }
 
     resetFirebasePassword(){
-        alert('Ett  nytt lösenord har skickats till din mejl');
+        alert('Ring Polia :)');
     }
 
     renderOverlay(){
@@ -36,8 +36,7 @@ export default class LoginHelp extends Component{
     render(){
     return(
         <View >
-        {this.renderOverlay()} 
-        < TouchableOpacity onPress={ () => {this.setState({isVisible:true})}}> 
+        < TouchableOpacity onPress={ () => {this.resetFirebasePassword()}}> 
         <Text style= {styles.buttonTextStyle}> Glömt lösenord? </Text> 
         </TouchableOpacity>   
         </View>
@@ -47,8 +46,7 @@ export default class LoginHelp extends Component{
 
 const styles = StyleSheet.create({
     overlayContainer:{
-        position: 'relative',
-        top: 0, left: 0, bottom: 0, right: 0,
+        
     },
     buttonTextStyle: {
         color: GREY1,

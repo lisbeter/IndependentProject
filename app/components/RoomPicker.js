@@ -4,15 +4,18 @@ import {TABBAR_GREY,GREEN, WHITE, GREY1, BACKGROUND_GREY} from '../styles';
 import BookingCalendar from '../components/BookingCalendar';
 
 export default class RoomPicker extends Component {
-  constructor(props){
-    super(props);
+  constructor({ initialRoom }){
+    super();
     this.state = {
-      room: '',
+      selected: initialRoom,
     }
+  }
+
+  onRoomChanged(room) {
+    this.props.callbackParent(room); // we notify our parent
   }
   
     render() {
-      const room = this.props.room;
 
       return (
         <View style = {styles.container}>
@@ -20,10 +23,12 @@ export default class RoomPicker extends Component {
           itemTextStyle = {styles.picker}
           selectedValue={this.state.room}
           onValueChange={(itemValue, itemIndex) => {
-            this.setState({room: itemValue});}}>
-          <Picker.Item label="Konferensrummet" value="konferensrummet" />
-          <Picker.Item label="Spelrummet" value="spelrummet" />
-          <Picker.Item label="Skrubben" value="skrubben" />
+            this.setState({selected: itemValue});
+            this.onRoomChanged(itemValue);
+            }}>
+          <Picker.Item label="Konferensrummet" value="Konferensrummet" />
+          <Picker.Item label="Spelrummet" value="Spelrummet" />
+          <Picker.Item label="Skrubben" value="Skrubben" />
         </Picker>
         </View>
       );

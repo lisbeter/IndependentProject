@@ -20,7 +20,7 @@ class LoginForm extends Component {
 
         const { email, password } = this.state;
         firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
-            .then(() => { this.onSignIn();
+            .then(() => { 
                         })
             .catch((error) => { alert(error.toString());         
             });
@@ -29,7 +29,10 @@ class LoginForm extends Component {
     }
     renderButtonOrSpinner() {
         if (this.state.loading) {
-            return  <Spinner/>;
+            return(  
+            <View style = {styles.buttonContainer}>
+            <Spinner/>
+            </View>);
         }
         return (    <View style = {styles.buttonContainer}>
                         <Button  onPress={this.onLoginPress.bind(this)} 
@@ -59,7 +62,6 @@ class LoginForm extends Component {
                         onChangeText={password => this.setState({ password })}
                     />
                     </View>
-                    <Text style={styles.errorTextStyle}>{this.state.error}</Text>
                     {this.renderButtonOrSpinner()}
             </KeyboardAvoidingView>
         );

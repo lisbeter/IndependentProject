@@ -60,11 +60,15 @@ export default class Profile extends React.Component {
       
       return (
         <View style={ styles.mainContainer}>
+        <View>
         <ScreenHeader label='Dina bokningar'/>
         <Ionicons name='ios-contact-outline' size={80} color={WHITE} /> 
         {this.renderInfoOrSpinner()}
-        <View style={ styles.agendaContainer}>
         </View>
+        <View style={ styles.agendaContainer}>
+        <ProfileAgenda/>
+        </View>
+       
         </View>  
     );
   }
@@ -74,13 +78,13 @@ export default class Profile extends React.Component {
   const styles = StyleSheet.create({
     mainContainer: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       alignItems: 'center',
       backgroundColor: '#5A6978',
     },
     agendaContainer: {
       alignSelf: 'stretch',
-      height: 200,
+      height: 400,
       marginBottom: 2,
     },
     userText: {
